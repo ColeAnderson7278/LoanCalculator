@@ -15,74 +15,97 @@
         <script src="main.js"></script>
     </head>
     <body>
-        <div id="outputDisplayContainer">
-            <div id="mainInfoContainer">
-                <h2 id="mainInfoTitle">Your payment:</h2>
-                <h2>$100</h2>
+        <div id="wholeContainer">
+            <div id="outputDisplayContainer">
+                <div id="mainInfoContainer">
+                    <h2 id="mainInfoTitle">Your payment:</h2>
+                    <h2>$100</h2>
+                </div>
+                <div id="minorInfoContainer">
+                    <div id="minorInfo">
+                        <h4 id="minorInfoTitle">P&I:</h4>
+                        <h4>$100</h4>
+                    </div>
+                    <div id="minorInfo">
+                        <h4 id="minorInfoTitle">PMI:</h4>
+                        <h4>$100</h4>
+                    </div>
+                    <div id="minorInfo">
+                        <h4 id="minorInfoTitle">Insurance:</h4>
+                        <h4>$100</h4>
+                    </div>
+                    <div id="minorInfo">
+                        <h4 id="minorInfoTitle">Taxes:</h4>
+                        <h4>$100</h4>
+                    </div>
+                </div>
             </div>
-            <div id="minorInfoContainer">
-                <div id="minorInfo">
-                    <h4 id="minorInfoTitle">P&I:</h4>
-                    <h4>$100</h4>
-                </div>
-                <div id="minorInfo">
-                    <h4 id="minorInfoTitle">PMI:</h4>
-                    <h4>$100</h4>
-                </div>
-                <div id="minorInfo">
-                    <h4 id="minorInfoTitle">Insurance:</h4>
-                    <h4>$100</h4>
-                </div>
-                <div id="minorInfo">
-                    <h4 id="minorInfoTitle">Taxes:</h4>
-                    <h4>$100</h4>
-                </div>
-            </div>
-        </div>
-        <form>
-            <div class="form-group">
-                <label for="homePriceInput">Home price</label>
-                <input
-                    class="form-control"
-                    id="homePriceInput"
-                    placeholder="Price"
-                />
-            </div>
-            <div id="downPaymentContainer">
+            <form>
                 <div class="form-group">
-                    <label for="downPaymentPriceInput">Down price</label>
+                    <label for="homePriceInput">Home price</label>
                     <input
+                        type="number"
+                        min="5000"
+                        max="1000000000"
                         class="form-control"
-                        id="downPaymentPriceInput"
+                        id="homePriceInput"
                         placeholder="Price"
+                        required
                     />
+                </div>
+                <div class="form-row" id="downPaymentContainer">
+                    <div class="col-8">
+                        <label for="downPaymentPriceInput"
+                            >Down payment price</label
+                        >
+                        <input
+                            type="number"
+                            min="0"
+                            max="1000000000"
+                            class="form-control"
+                            id="downPaymentPriceInput"
+                            placeholder="Price"
+                            required
+                        />
+                    </div>
+                    <div class="col">
+                        <label for="downPaymentPriceInput"
+                            >Down payment percentage</label
+                        >
+                        <input
+                            type="number"
+                            min="0"
+                            max="100"
+                            class="form-control"
+                            id="downPaymentPercentInput"
+                            placeholder="Percentage"
+                            required
+                        />
+                    </div>
                 </div>
                 <div class="form-group">
+                    <label for="exampleFormControlSelect1">Loan program</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option selected>30-year fixed</option>
+                        <option>15-year fixed</option>
+                        <option>5/1 ARM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="interestRateInput">Interest rate</label>
                     <input
+                        type="number"
+                        min="0"
+                        max="100"
                         class="form-control"
-                        id="downPaymentPercentInput"
+                        id="interestRateInput"
                         placeholder="Percentage"
+                        required
                     />
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>30-year fixed</option>
-                    <option>15-year fixed</option>
-                    <option>5/1 ARM</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="interestRateInput">Down price</label>
-                <input
-                    class="form-control"
-                    id="interestRateInput"
-                    placeholder="Percentage"
-                />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
         <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
