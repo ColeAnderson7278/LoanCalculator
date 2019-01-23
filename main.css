@@ -1,0 +1,13 @@
+#outputDisplayContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+#minorInfo {
+    display: flex;
+    margin-right: 5%;
+}
+
+#minorInfoTitle {
+    margin-right: 3 %;
+}
