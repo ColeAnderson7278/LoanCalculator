@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Mortgage Calculator</title>
+        <title>Loan Calculator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
         <link
@@ -17,88 +17,58 @@
         <div id="wholeContainer">
             <div id="outputDisplayContainer">
                 <div id="mainInfoContainer">
-                    <h2 id="mainInfoTitle">Your payment:</h2>
+                    <h2 id="mainInfoTitle">Monthly Payments:</h2>
                     <h2 id="monthlyPaymentHolder"></h2>
                 </div>
                 <div id="minorInfoContainer">
-                    <div id="minorInfo">
-                        <h4 id="minorInfoTitle">P&I:</h4>
-                        <h4 id="piHolder"></h4>
+                    <div>
+                        <h2 id="minorInfoTitle">Total Principal:</h2>
+                        <h2 id="totalPrincipalHolder"></h2>
                     </div>
-                    <div id="minorInfo">
-                        <h4 id="minorInfoTitle">PMI:</h4>
-                        <h4 id="pmiHolder"></h4>
-                    </div>
-                    <div id="minorInfo">
-                        <h4 id="minorInfoTitle">Insurance:</h4>
-                        <h4 id="insuranceHolder"></h4>
-                    </div>
-                    <div id="minorInfo">
-                        <h4 id="minorInfoTitle">Taxes:</h4>
-                        <h4 id="taxHolder"></h4>
+                    <div>
+                        <h2 id="minorInfoTitle">Total Interest:</h2>
+                        <h2 id="totalInterestHolder"></h2>
                     </div>
                 </div>
             </div>
             <form>
                 <div class="form-group">
-                    <label for="homePriceInput">Home price</label>
+                    <label for="loanPriceInput">Loan price</label>
                     <input
                         type="number"
-                        min="5000"
-                        max="1000000000"
+                        min="1000"
+                        max="1000000"
                         class="form-control"
-                        id="homePriceInput"
-                        placeholder="Price"
+                        id="loanPriceInput"
                         required
                     />
                 </div>
-                <div class="form-row" id="downPaymentContainer">
-                    <div class="col-8">
-                        <label for="downPaymentPriceInput"
-                            >Down payment price</label
-                        >
-                        <input
-                            type="number"
-                            min="0"
-                            max="1000000000"
-                            class="form-control"
-                            id="downPaymentPriceInput"
-                            placeholder="Price"
-                            required
-                        />
-                    </div>
-                    <div class="col">
-                        <label for="downPaymentPriceInput"
-                            >Down payment percentage</label
-                        >
-                        <input
-                            type="number"
-                            min="0"
-                            max="100"
-                            class="form-control"
-                            id="downPaymentPercentInput"
-                            placeholder="Percentage"
-                            required
-                        />
-                    </div>
+                <div class="form-group">
+                    <label for="loanProgramSelection">Loan term type</label>
+                    <select class="form-control" id="loanProgramSelection">
+                        <option value="" selected>Months</option>
+                        <option value="">Years</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="loanProgramSelection">Loan program</label>
-                    <select class="form-control" id="loanProgramSelection">
-                        <option value="30" selected>30-year fixed</option>
-                        <option value="15">15-year fixed</option>
-                        <!-- <option value="3">5/1 ARM</option> -->
-                    </select>
+                    <label for="loanTermInput">Loan term</label>
+                    <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        class="form-control"
+                        id="loanTermInput"
+                        required
+                    />
                 </div>
                 <div class="form-group">
                     <label for="interestRateInput">Interest rate</label>
                     <input
                         type="number"
                         min="0"
-                        max="100"
+                        max="99"
                         class="form-control"
                         id="interestRateInput"
-                        placeholder="Percentage"
                         required
                     />
                 </div>
