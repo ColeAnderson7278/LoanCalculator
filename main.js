@@ -1,73 +1,48 @@
-// const homePrice = document.querySelector("#homePriceInput").value;
-// const amountOfMonths = document.querySelector("#loanProgramSelection").value;
-// const interestRate = document.querySelector("#interestRateInput").value;
-// var pAndI;
-// var PMI;
-// var insurance;
-// var tax;
-// var monthlyPayment;
+function checkForSubmitButton() {
+    var button = document.querySelector("#formSubmitButton");
+    button.addEventListener("click", function() {
+        setPaymentInfo();
+    });
+}
 
-// function checkForSubmitButton() {
-//     var button = document.querySelector("#formSubmitButton");
-//     button.addEventListener("click", function() {
-//         setPAndIPayment();
-//         setPMIPayment();
-//         setInsurancePayment();
-//         setTaxPayment();
-//         setMonthlyPayment();
-//     });
-// }
+checkForSubmitButton();
 
-// checkForSubmitButton();
+function setPaymentInfo() {
+    var loanAmount = document.querySelector("#loanPriceInput").value;
+    var loanProgram = document.querySelector("#loanProgramSelection").value;
+    var loanTerm = document.querySelector("#loanTermInput").value;
+    var interestRate = document.querySelector("#interestRateInput").value;
+    setMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate);
+    setPrincipalPaid(loanAmount);
+    setInterestPaid(loanAmount, loanTerm, loanProgram, interestRate);
+}
 
-// function setPAndIPayment() {
-//     calculatePAndIPayment(interestRate, amountOfMonths, homePrice);
-//     document.querySelector("#piHolder").innerText = "$" + pAndI;
-// }
+function setMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate) {
+    document.querySelector("#monthlyPaymentHolder").innerText =
+        "$" +
+        getMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate);
+}
 
-// function calculatePAndIPayment(interestRate, amountOfMonths, homePrice) {
-//     var rate = interestRate * 0.001;
-//     var nper = amountOfMonths * 12;
-//     var pv = homePrice;
-//     var PandIPayment =
-//         pv *
-//         ((rate * Math.pow(1 + rate, nper)) / (Math.pow(1 + rate, nper) - 1));
-//     pAndI = Math.round(PandIPayment);
-// }
+function getMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate) {
+    var payment = loanAmount / (loanTerm * loanProgram);
+    var interest = loanAmount * (interestRate / 100);
+    return interest / 12;
+    // return Math.round((payment + interest) * 100) / 100;
+}
 
-// function setPMIPayment() {
-//     calculatePMIPayment(homePrice);
-//     document.querySelector("#pmiHolder").innerText = "$" + PMI;
-// }
+function setPrincipalPaid(loanAmount) {
+    document.querySelector("#totalPrincipalHolder").innerText =
+        "$" + loanAmount;
+}
 
-// function calculatePMIPayment(homePrice) {
-//     PMI = Math.round((homePrice * 0.01) / 12);
-// }
+function setInterestPaid(loanAmount, loanTerm, loanProgram, interestRate) {
+    document.querySelector("#totalInterestHolder").innerText =
+        "$" + getInterestPaid(loanAmount, loanTerm, loanProgram, interestRate);
+}
 
-// function setInsurancePayment() {
-//     calculateInsurancePayment(homePrice);
-//     document.querySelector("#insuranceHolder").innerText = "$" + insurance;
-// }
-
-// function calculateInsurancePayment(homePrice) {
-//     insurance = Math.round((homePrice / 100000) * 35);
-// }
-
-// function setTaxPayment() {
-//     calculateTaxPayment(homePrice);
-//     document.querySelector("#taxHolder").innerText = "$" + tax;
-// }
-
-// function calculateTaxPayment(homePrice) {
-//     tax = Math.round((homePrice * 0.015) / 12);
-// }
-
-// function setMonthlyPayment() {
-//     calculateMonthlyPayment(pAndI);
-//     document.querySelector("#monthlyPaymentHolder").innerText =
-//         "$" + monthlyPayment;
-// }
-
-// function calculateMonthlyPayment(pAndI) {
-//     monthlyPayment = pAndI + PMI + insurance + tax;
+// function getInterestPaid(loanAmount, loanTerm, loanProgram, interestRate) {
+//     var interest = interestRate / 100 / 12;
+//     var time = loanTerm * loanProgram;
+//     var factor = 1 / (1 * Math.pow(1 + interest, time));
+//     return factor * loanAmount;
 // }
