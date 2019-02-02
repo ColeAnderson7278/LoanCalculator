@@ -1,20 +1,40 @@
-function checkForSubmitButton() {
+function checkForm() {
+    var price = document.querySelector("#loanPriceInput").value;
+    var term = document.querySelector("#loanTermInput").value;
+    var interest = document.querySelector("#interestRateInput").value;
+    if (price.length > 0 && term.length > 0 && interest.length > 0) {
+        document.querySelector("#formSubmitButton").disabled = false;
+    } else {
+        document.querySelector("#formSubmitButton").disabled = true;
+    }
+}
+
+function runCheckForm() {
+    document.body.addEventListener("mouseover", function() {
+        checkForm();
+    });
+}
+
+runCheckForm();
+
+function checkForSubmit() {
     var button = document.querySelector("#formSubmitButton");
     button.addEventListener("click", function() {
+        checkForm();
         setPaymentInfo();
     });
 }
 
-checkForSubmitButton();
+checkForSubmit();
 
 function setPaymentInfo() {
     var loanAmount = document.querySelector("#loanPriceInput").value;
     var loanProgram = document.querySelector("#loanProgramSelection").value;
     var loanTerm = document.querySelector("#loanTermInput").value;
-    var interestRate = document.querySelector("#interestRateInput").value;
+    var interestRate = document.querySelector("#interestRateInput").value / 100;
     setMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate);
     setPrincipalPaid(loanAmount);
-    setInterestPaid(loanAmount, loanTerm, loanProgram, interestRate);
+    setInterestPaid(loanAmount, interestRate);
 }
 
 function setMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate) {
@@ -25,9 +45,8 @@ function setMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate) {
 
 function getMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate) {
     var payment = loanAmount / (loanTerm * loanProgram);
-    var interest = loanAmount * (interestRate / 100);
-    return interest / 12;
-    // return Math.round((payment + interest) * 100) / 100;
+    var interest = (interestRate * loanAmount) / (loanTerm * loanProgram);
+    return Math.round((payment + interest) * 100) / 100;
 }
 
 function setPrincipalPaid(loanAmount) {
@@ -35,14 +54,11 @@ function setPrincipalPaid(loanAmount) {
         "$" + loanAmount;
 }
 
-function setInterestPaid(loanAmount, loanTerm, loanProgram, interestRate) {
+function setInterestPaid(loanAmount, interestRate) {
     document.querySelector("#totalInterestHolder").innerText =
-        "$" + getInterestPaid(loanAmount, loanTerm, loanProgram, interestRate);
+        "$" + getInterestPaid(loanAmount, interestRate);
 }
 
-// function getInterestPaid(loanAmount, loanTerm, loanProgram, interestRate) {
-//     var interest = interestRate / 100 / 12;
-//     var time = loanTerm * loanProgram;
-//     var factor = 1 / (1 * Math.pow(1 + interest, time));
-//     return factor * loanAmount;
-// }
+function getInterestPaid(loanAmount, interestRate) {
+    return Math.round(loanAmount * interestRate * 100) / 100;
+}
