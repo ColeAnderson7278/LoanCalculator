@@ -1,31 +1,14 @@
-function checkForm() {
-    var price = document.querySelector("#loanPriceInput").value;
-    var term = document.querySelector("#loanTermInput").value;
-    var interest = document.querySelector("#interestRateInput").value;
-    if (price.length > 0 && term.length > 0 && interest.length > 0) {
-        document.querySelector("#formSubmitButton").disabled = false;
-    } else {
-        document.querySelector("#formSubmitButton").disabled = true;
-    }
-}
-
-function runCheckForm() {
-    document.body.addEventListener("mouseover", function() {
-        checkForm();
-    });
-}
-
-runCheckForm();
-
-function checkForSubmit() {
+function submitForm() {
+    var form = document.getElementsByTagName("form")[0];
     var button = document.querySelector("#formSubmitButton");
     button.addEventListener("click", function() {
-        checkForm();
-        setPaymentInfo();
+        if (form.checkValidity()) {
+            setPaymentInfo();
+        } else {
+            alert("Please check your input.");
+        }
     });
 }
-
-checkForSubmit();
 
 function setPaymentInfo() {
     var loanAmount = document.querySelector("#loanPriceInput").value;
