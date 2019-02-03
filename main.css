@@ -1,7 +1,6 @@
 #wholeContainer {
     padding: 1%;
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-        "Lucida Sans", Arial, sans-serif;
+    font-family: "Gafata";
 }
 
 #outputDisplayContainer {
@@ -9,11 +8,20 @@
     justify-content: space-around;
 }
 
-#minorInfo {
+#monthlyPaymentHolder {
+    font-size: 400%;
+}
+
+#minorInfoContainer {
     display: flex;
     margin-right: 5%;
 }
 
 #minorInfoTitle {
     margin-right: 3%;
+}
+
+#totalPrincipalHolder,
+#totalInterestHolder {
+    font-size: 250%;
 }
