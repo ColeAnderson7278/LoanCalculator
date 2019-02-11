@@ -3,13 +3,15 @@ function submitForm() {
     var button = document.querySelector("#formSubmitButton");
     button.addEventListener("click", function() {
         if (form.checkValidity()) {
-            setPaymentInfo();
+            const loanInfo = createLoanInfoClass();
+            setPaymentInfo(loanInfo);
         } else {
             alert("Please check your input.");
         }
     });
 }
-function setPaymentInfo() {
+
+function createLoanInfoClass() {
     var loanAmount = document.querySelector("#loanPriceInput").value;
     var loanProgram = document.querySelector("#loanProgramSelection").value;
     var loanTerm = document.querySelector("#loanTermInput").value;
@@ -20,24 +22,13 @@ function setPaymentInfo() {
         loanProgram,
         interestRate
     );
-    setMonthlyPayment(loanInfo);
-    setPrincipalPaid(loanInfo);
-    setInterestPaid(loanInfo);
+    return loanInfo;
 }
 
-function setMonthlyPayment(loanInfo) {
-    document.querySelector("#monthlyPaymentHolder").innerText =
-        "$" + loanInfo.monthlyPayment;
-}
-
-function setPrincipalPaid(loanInfo) {
-    document.querySelector("#totalPrincipalHolder").innerText =
-        "$" + loanInfo.loanAmount;
-}
-
-function setInterestPaid(loanInfo) {
-    document.querySelector("#totalInterestHolder").innerText =
-        "$" + loanInfo.interestPaid;
+function setPaymentInfo(loanInfo) {
+    loanInfo.setMonthlyPayment("monthlyPaymentHolder");
+    loanInfo.setPrincipalPaid("totalPrincipalHolder");
+    loanInfo.setInterestPaid("totalInterestHolder");
 }
 
 class LoanInfo {
@@ -60,5 +51,18 @@ class LoanInfo {
 
     getInterestPaid() {
         return Math.round(this.loanAmount * this.interestRate * 100) / 100;
+    }
+
+    setMonthlyPayment(idLocation) {
+        document.getElementById(idLocation).innerText =
+            "$" + this.monthlyPayment;
+    }
+
+    setPrincipalPaid(idLocation) {
+        document.getElementById(idLocation).innerText = "$" + this.loanAmount;
+    }
+
+    setInterestPaid(idLocation) {
+        document.getElementById(idLocation).innerText = "$" + this.interestPaid;
     }
 }
