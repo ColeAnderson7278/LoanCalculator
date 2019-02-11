@@ -9,39 +9,56 @@ function submitForm() {
         }
     });
 }
-
 function setPaymentInfo() {
     var loanAmount = document.querySelector("#loanPriceInput").value;
     var loanProgram = document.querySelector("#loanProgramSelection").value;
     var loanTerm = document.querySelector("#loanTermInput").value;
     var interestRate = document.querySelector("#interestRateInput").value / 100;
-    setMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate);
-    setPrincipalPaid(loanAmount);
-    setInterestPaid(loanAmount, interestRate);
+    const loanInfo = new LoanInfo(
+        loanAmount,
+        loanTerm,
+        loanProgram,
+        interestRate
+    );
+    setMonthlyPayment(loanInfo);
+    setPrincipalPaid(loanInfo);
+    setInterestPaid(loanInfo);
 }
 
-function setMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate) {
+function setMonthlyPayment(loanInfo) {
     document.querySelector("#monthlyPaymentHolder").innerText =
-        "$" +
-        getMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate);
+        "$" + loanInfo.monthlyPayment;
 }
 
-function getMonthlyPayment(loanAmount, loanTerm, loanProgram, interestRate) {
-    var payment = loanAmount / (loanTerm * loanProgram);
-    var interest = (interestRate * loanAmount) / (loanTerm * loanProgram);
-    return Math.round((payment + interest) * 100) / 100;
-}
-
-function setPrincipalPaid(loanAmount) {
+function setPrincipalPaid(loanInfo) {
     document.querySelector("#totalPrincipalHolder").innerText =
-        "$" + loanAmount;
+        "$" + loanInfo.loanAmount;
 }
 
-function setInterestPaid(loanAmount, interestRate) {
+function setInterestPaid(loanInfo) {
     document.querySelector("#totalInterestHolder").innerText =
-        "$" + getInterestPaid(loanAmount, interestRate);
+        "$" + loanInfo.interestPaid;
 }
 
-function getInterestPaid(loanAmount, interestRate) {
-    return Math.round(loanAmount * interestRate * 100) / 100;
+class LoanInfo {
+    constructor(loanAmount, loanTerm, loanProgram, interestRate) {
+        this.loanAmount = loanAmount;
+        this.loanTerm = loanTerm;
+        this.loanProgram = loanProgram;
+        this.interestRate = interestRate;
+        this.monthlyPayment = this.getMonthlyPayment();
+        this.interestPaid = this.getInterestPaid();
+    }
+
+    getMonthlyPayment() {
+        var payment = this.loanAmount / (this.loanTerm * this.loanProgram);
+        var interest =
+            (this.interestRate * this.loanAmount) /
+            (this.loanTerm * this.loanProgram);
+        return Math.round((payment + interest) * 100) / 100;
+    }
+
+    getInterestPaid() {
+        return Math.round(this.loanAmount * this.interestRate * 100) / 100;
+    }
 }
