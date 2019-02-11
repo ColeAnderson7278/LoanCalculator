@@ -1,27 +1,54 @@
 #wholeContainer {
-    padding: 1%;
+    margin: 2.5%;
     font-family: "Gafata";
-}
-
-#outputDisplayContainer {
-    display: flex;
-    justify-content: space-around;
 }
 
 #monthlyPaymentHolder {
     font-size: 400%;
 }
 
-#minorInfoContainer {
-    display: flex;
-    margin-right: 5%;
+@media screen and (min-width: 650px) {
+    #outputDisplayContainer {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #principalContainer,
+    #interestContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #minorInfoLine {
+        border: 1px solid #007bff;
+        width: 100%;
+    }
+
+    #minorInfoContainer {
+        margin-right: 5%;
+    }
+
+    #minorInfoTitle {
+        margin-right: 5%;
+    }
 }
 
-#minorInfoTitle {
-    margin-right: 3%;
+@media screen and (max-width: 650px) {
+    #outputDisplayContainer {
+        text-align: center;
+    }
+
+    #minorInfoLine {
+        border: 1px solid #007bff;
+        width: 50%;
+    }
+}
+
+#minorInfoLine {
+    border: 1px solid #007bff;
 }
 
 #totalPrincipalHolder,
 #totalInterestHolder {
-    font-size: 250%;
+    font-size: 200%;
 }
