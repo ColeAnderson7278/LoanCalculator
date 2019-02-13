@@ -52,3 +52,9 @@
 #totalInterestHolder {
     font-size: 200%;
 }
+
+#monthlyInterestHolder,
+#monthlyLoanHolder {
+    font-size: 120%;
+    color: #007bff;
+}

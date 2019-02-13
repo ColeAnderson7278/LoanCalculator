@@ -27,6 +27,8 @@ function createLoanInfoClass() {
 
 function setPaymentInfo(loanInfo) {
     loanInfo.setMonthlyPayment("monthlyPaymentHolder");
+    loanInfo.setMonthlyInterest("monthlyInterestHolder");
+    loanInfo.setMonthlyLoan("monthlyLoanHolder");
     loanInfo.setPrincipalPaid("totalPrincipalHolder");
     loanInfo.setInterestPaid("totalInterestHolder");
 }
@@ -38,6 +40,8 @@ class LoanInfo {
         this.loanProgram = loanProgram;
         this.interestRate = interestRate;
         this.monthlyPayment = this.getMonthlyPayment();
+        this.monthlyInterest = this.getMonthlyInterest();
+        this.monthlyLoan = this.getMonthlyLoan();
         this.interestPaid = this.getInterestPaid();
     }
 
@@ -49,6 +53,24 @@ class LoanInfo {
         return Math.round((payment + interest) * 100) / 100;
     }
 
+    getMonthlyInterest() {
+        return (
+            Math.round(
+                ((this.interestRate * this.loanAmount) /
+                    (this.loanTerm * this.loanProgram)) *
+                    100
+            ) / 100
+        );
+    }
+
+    getMonthlyLoan() {
+        return (
+            Math.round(
+                (this.loanAmount / (this.loanTerm * this.loanProgram)) * 100
+            ) / 100
+        );
+    }
+
     getInterestPaid() {
         return Math.round(this.loanAmount * this.interestRate * 100) / 100;
     }
@@ -56,6 +78,16 @@ class LoanInfo {
     setMonthlyPayment(idLocation) {
         document.getElementById(idLocation).innerText =
             "$" + this.monthlyPayment;
+    }
+
+    setMonthlyInterest(idLocation) {
+        document.getElementById(idLocation).innerText =
+            "Interest Rate: $" + this.monthlyInterest;
+    }
+
+    setMonthlyLoan(idLocation) {
+        document.getElementById(idLocation).innerText =
+            "Payment Before Interest: $" + this.monthlyLoan;
     }
 
     setPrincipalPaid(idLocation) {
