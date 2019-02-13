@@ -3,8 +3,12 @@
     font-family: "Gafata";
 }
 
+#mainInfoTitle {
+    color: #007bff;
+}
+
 #monthlyPaymentHolder {
-    font-size: 400%;
+    font-size: 500%;
 }
 
 @media screen and (min-width: 650px) {
@@ -12,8 +16,8 @@
         display: flex;
         justify-content: space-around;
     }
-
-    #principalContainer,
+    #monthlyInterestContainer,
+    #loanContainer,
     #interestContainer {
         display: flex;
         justify-content: space-between;
@@ -48,11 +52,7 @@
     border: 1px solid #007bff;
 }
 
-#totalPrincipalHolder,
-#totalInterestHolder {
-    font-size: 200%;
-}
-
+#totalInterestHolder,
 #monthlyInterestHolder,
 #monthlyLoanHolder {
     font-size: 120%;

@@ -29,7 +29,6 @@ function setPaymentInfo(loanInfo) {
     loanInfo.setMonthlyPayment("monthlyPaymentHolder");
     loanInfo.setMonthlyInterest("monthlyInterestHolder");
     loanInfo.setMonthlyLoan("monthlyLoanHolder");
-    loanInfo.setPrincipalPaid("totalPrincipalHolder");
     loanInfo.setInterestPaid("totalInterestHolder");
 }
 
@@ -82,16 +81,11 @@ class LoanInfo {
 
     setMonthlyInterest(idLocation) {
         document.getElementById(idLocation).innerText =
-            "Interest Rate: $" + this.monthlyInterest;
+            "$" + this.monthlyInterest;
     }
 
     setMonthlyLoan(idLocation) {
-        document.getElementById(idLocation).innerText =
-            "Payment Before Interest: $" + this.monthlyLoan;
-    }
-
-    setPrincipalPaid(idLocation) {
-        document.getElementById(idLocation).innerText = "$" + this.loanAmount;
+        document.getElementById(idLocation).innerText = "$" + this.monthlyLoan;
     }
 
     setInterestPaid(idLocation) {
