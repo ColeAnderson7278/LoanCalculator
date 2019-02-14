@@ -1,13 +1,15 @@
 function submitForm() {
+    var outputContainer = document.querySelector("#outputDisplayContainer");
     var form = document.getElementsByTagName("form")[0];
     var button = document.querySelector("#formSubmitButton");
     button.addEventListener("click", function() {
         if (form.checkValidity()) {
             const loanInfo = createLoanInfoClass();
             setPaymentInfo(loanInfo);
+            outputContainer.removeAttribute("hidden");
             window.scrollTo(0, 0);
         } else {
-            alert("Please check your input.");
+            alert("Please check your inputs.");
         }
     });
 }
