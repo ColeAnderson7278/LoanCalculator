@@ -7,6 +7,7 @@ function submitForm() {
             const loanInfo = createLoanInfoClass();
             setPaymentInfo(loanInfo);
             outputContainer.removeAttribute("hidden");
+            form.setAttribute("hidden", "hidden");
             window.scrollTo(0, 0);
         } else {
             alert("Please check your inputs.");
