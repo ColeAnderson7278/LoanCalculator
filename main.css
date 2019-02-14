@@ -5,6 +5,7 @@
 
 #mainInfoTitle {
     color: #007bff;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.479);
 }
 
 #monthlyPaymentHolder {
@@ -57,4 +58,10 @@
 #monthlyLoanHolder {
     font-size: 120%;
     color: #007bff;
+}
+
+#loanForm {
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
 }
