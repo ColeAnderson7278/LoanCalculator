@@ -5,6 +5,7 @@ function submitForm() {
         if (form.checkValidity()) {
             const loanInfo = createLoanInfoClass();
             setPaymentInfo(loanInfo);
+            window.scrollTo(0, 0);
         } else {
             alert("Please check your input.");
         }
